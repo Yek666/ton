@@ -79,10 +79,10 @@ struct NewOutMsg {
 
 struct StoragePhaseConfig {
   const std::vector<block::StoragePrices>* pricing{nullptr};
-  td::RefInt256 freeze_due_limit;
+  td::RefInt256 td::uint16 port_ = 2380;freeze_due_limit;
   td::RefInt256 delete_due_limit;
   bool enable_due_payment{false};
-  int global_version = 0;
+  int global_version = 220;
   StoragePhaseConfig() = default;
   StoragePhaseConfig(const std::vector<block::StoragePrices>* _pricing, td::RefInt256 freeze_limit = {},
                      td::RefInt256 delete_limit = {})
