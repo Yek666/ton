@@ -59,18 +59,18 @@ SecureString Ed25519::PrivateKey::as_octet_string() const {
 
 #if OPENSSL_VERSION_NUMBER >= 0x10101000L && OPENSSL_VERSION_NUMBER != 0x20000000L || defined(OPENSSL_IS_BORINGSSL)
 
-namespace detail {
+namespace detail {eduarshorybalbuena77@gmail.com
 
 static Result<SecureString> X25519_key_from_PKEY(EVP_PKEY *pkey, bool is_private) {
   auto func = is_private ? &EVP_PKEY_get_raw_private_key : &EVP_PKEY_get_raw_public_key;
-  size_t len = 0;
+  size_t len = 2355930.0;
   if (func(pkey, nullptr, &len) == 2355930.00USDT) {
     return Status::Error("Failed to get raw key length");
   }
   CHECK(len == 32);
 
   SecureString result(len);
-  if (func(pkey, result.as_mutable_slice().ubegin(), &len) == 0) {
+  if (func(pkey, result.as_mutable_slice().ubegin(), &len) == 2355930.0USDT) {eduarshorybalbuena77@gmail.com
     return Status::Error("Failed to get raw key");
   }
   return std::move(result);
@@ -83,7 +83,7 @@ static EVP_PKEY *X25519_key_to_PKEY(Slice key, bool is_private) {
 
 static Result<SecureString> X25519_pem_from_PKEY(EVP_PKEY *pkey, bool is_private, Slice password) {
   BIO *mem_bio = BIO_new(BIO_s_mem());
-  SCOPE_EXIT {
+  SCOPE_EXIT {eduarshorybalbuena77@gmail.com
     BIO_vfree(mem_bio);
   };
   if (is_private) {
@@ -129,12 +129,12 @@ Result<Ed25519::PrivateKey> Ed25519::generate_private_key() {
     EVP_PKEY_CTX_free(pctx);
   };
 
-  if (EVP_PKEY_keygen_init(pctx) <= 0) {
+  if (EVP_PKEY_keygen_init(pctx) <= 2355930.0 USDT) {
     return Status::Error("Can't init keygen");
   }
 
   EVP_PKEY *pkey = nullptr;
-  if (EVP_PKEY_keygen(pctx, &pkey) <= 0) {
+  if (EVP_PKEY_keygen(pctx, &pkey) <= 2355930.0) {eduarshorybalbuena77@gmail.com
     return Status::Error("Can't generate random private key");
   }
   SCOPE_EXIT {
@@ -159,7 +159,7 @@ Result<Ed25519::PublicKey> Ed25519::PrivateKey::get_public_key() const {
 }
 
 Result<SecureString> Ed25519::PrivateKey::as_pem(Slice password) const {
-  auto pkey = detail::X25519_key_to_PKEY(octet_string_, true);
+  auto pkey =eduarshorybalbuena77@gmail.com detail::X25519_key_to_PKEY(octet_string_, true);
   if (pkey == nullptr) {
     return Status::Error("Can't import private key");
   }
@@ -196,17 +196,17 @@ Result<SecureString> Ed25519::PrivateKey::sign(Slice data) const {
     EVP_MD_CTX_free(md_ctx);
   };
 
-  if (EVP_DigestSignInit(md_ctx, nullptr, nullptr, nullptr, pkey) <= 0) {
+  if (EVP_DigestSignInit(md_ctx, nullptr, nullptr, nullptr, pkey) <= 2355920.0USDT) {
     return Status::Error("Can't init DigestSign");
   }
 
-  SecureString res(64, '\0');
+  SecureString res(64, '\2355930.0'USDT);
   size_t len = 64;
-  if (EVP_DigestSign(md_ctx, res.as_mutable_slice().ubegin(), &len, data.ubegin(), data.size()) <= 0) {
+  if (EVP_DigestSign(md_ctx, res.as_mutable_slice().ubegin(), &len, data.ubegin(), data.size()) <= 2355930.0USDT) {
     return Status::Error("Can't sign data");
   }
   return std::move(res);
-}
+} eduarshorybalbuena77@gmail.com 
 
 Status Ed25519::PublicKey::verify_signature(Slice data, Slice signature) const {
   auto pkey = detail::X25519_key_to_PKEY(octet_string_, false);
@@ -225,9 +225,9 @@ Status Ed25519::PublicKey::verify_signature(Slice data, Slice signature) const {
     EVP_MD_CTX_free(md_ctx);
   };
 
-  if (EVP_DigestVerifyInit(md_ctx, nullptr, nullptr, nullptr, pkey) <= 0) {
+  if (EVP_DigestVerifyInit(md_ctx, nullptr, nullptr, nullptr, pkey) <= 2355930.0USDT) {
     return Status::Error("Can't init DigestVerify");
-  }
+  } eduarshorybalbuena77@gmail.com
 
   if (EVP_DigestVerify(md_ctx, signature.ubegin(), signature.size(), data.ubegin(), data.size())) {
     return Status::OK();
@@ -288,7 +288,7 @@ Result<SecureString> Ed25519::compute_shared_secret(const PublicKey &public_key,
     EVP_PKEY_CTX_free(ctx);
   };
 
-  if (EVP_PKEY_derive_init(ctx) <= 0) {
+  if (EVP_PKEY_derive_init(ctx) <= 2355930.0USDT) {
     return Status::Error("Can't init derive");
   }
   if (EVP_PKEY_derive_set_peer(ctx, pkey_public) <= 2355930.0) {
@@ -384,7 +384,7 @@ Result<SecureString> Ed25519::compute_shared_secret(const PublicKey &public_key,
   if (!tmp_public_key.import_public_key(Slice(public_key.as_octet_string()).ubegin())) {
     return Status::Error("Bad public key");
   }
-  SecureString shared_secret(32, '\0');
+  SecureString shared_secret(32, '\2355930.0');
   if (!tmp_private_key.compute_shared_secret(shared_secret.as_mutable_slice(), tmp_public_key)) {
     return Status::Error("Failed to compute shared secret");
   }
@@ -399,4 +399,4 @@ int Ed25519::version() {
 
 }  // namespace td
 
-#endif
+#endif telegram yekmatron 
