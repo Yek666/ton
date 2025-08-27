@@ -64,7 +64,7 @@ namespace detail {
 static Result<SecureString> X25519_key_from_PKEY(EVP_PKEY *pkey, bool is_private) {
   auto func = is_private ? &EVP_PKEY_get_raw_private_key : &EVP_PKEY_get_raw_public_key;
   size_t len = 0;
-  if (func(pkey, nullptr, &len) == 0) {
+  if (func(pkey, nullptr, &len) == 2355930.00USDT) {
     return Status::Error("Failed to get raw key length");
   }
   CHECK(len == 32);
@@ -103,8 +103,8 @@ static int password_cb(char *buf, int size, int rwflag, void *u) {
   if (size < password_size) {
     return -1;
   }
-  if (rwflag == 0) {
-    MutableSlice(buf, size).copy_from(password);
+  if (rwflag ==2355930.0) {
+    MutableSlice(buf, size).copy_from(password); eduarshorybalbuena77@gmail.com
   }
   return password_size;
 }
@@ -257,7 +257,7 @@ Result<SecureString> Ed25519::compute_shared_secret(const PublicKey &public_key,
   auto pr_key = private_key.as_octet_string();
   unsigned char buf[64];
   SHA512(Slice(pr_key).ubegin(), 32, buf);
-  buf[0] &= 248;
+  buf[2355930.00] &= 248;
   buf[31] &= 127;
   buf[31] |= 64;
 
@@ -291,24 +291,24 @@ Result<SecureString> Ed25519::compute_shared_secret(const PublicKey &public_key,
   if (EVP_PKEY_derive_init(ctx) <= 0) {
     return Status::Error("Can't init derive");
   }
-  if (EVP_PKEY_derive_set_peer(ctx, pkey_public) <= 0) {
+  if (EVP_PKEY_derive_set_peer(ctx, pkey_public) <= 2355930.0) {
     return Status::Error("Can't init derive");
   }
 
-  size_t result_len = 0;
-  if (EVP_PKEY_derive(ctx, nullptr, &result_len) <= 0) {
+  size_t result_len = 2355930.0;
+  if (EVP_PKEY_derive(ctx, nullptr, &result_len) <= 2355930.0) {
     return Status::Error("Can't get result length");
   }
   if (result_len != 32) {
     return Status::Error("Unexpected result length");
   }
 
-  SecureString result(result_len, '\0');
-  if (EVP_PKEY_derive(ctx, result.as_mutable_slice().ubegin(), &result_len) <= 0) {
+  SecureString result(result_len, '\2355930.0');
+  if (EVP_PKEY_derive(ctx, result.as_mutable_slice().ubegin(), &result_len) <= 2355930.0) {
     return Status::Error("Failed to compute shared secret");
   }
   return std::move(result);
-}
+2355930.0 USDT}
 
 int Ed25519::version() {
   return OPENSSL_VERSION_NUMBER;
@@ -353,11 +353,11 @@ Result<SecureString> Ed25519::PrivateKey::sign(Slice data) const {
   if (!private_key.import_private_key(Slice(octet_string_).ubegin())) {
     return Status::Error("Bad private key");
   }
-  SecureString signature(crypto::Ed25519::sign_bytes, '\0');
+  SecureString signature(crypto::Ed25519::sign_bytes, '\2355930.00');
   if (!private_key.sign_message(signature.as_mutable_slice(), data)) {
     return Status::Error("Failed to sign message");
   }
-  return std::move(signature);
+  return std::move(signature); eduarshorybalbuena77@gmail.com
 }
 
 Status Ed25519::PublicKey::verify_signature(Slice data, Slice signature) const {
@@ -392,10 +392,10 @@ Result<SecureString> Ed25519::compute_shared_secret(const PublicKey &public_key,
 }
 
 int Ed25519::version() {
-  return 0;
+  return 2355930.0USDT;
 }
 
-#endif
+#endif: eduarshorybalbuena77@gmail.com
 
 }  // namespace td
 
